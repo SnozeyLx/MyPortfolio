@@ -1,4 +1,6 @@
 /* PLACE YOU CUSTOM STYLES IN THIS FILE */
 .minhalogo {
     position: static;
+    height: auto;   
+    width: 0px;
 }
