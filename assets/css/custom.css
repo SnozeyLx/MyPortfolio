@@ -1,12 +1,13 @@
 /* PLACE YOU CUSTOM STYLES IN THIS FILE */
 .minhalogo {
-    position: relative;
+    position: static;
     height: 100;   
     width: 100px;
 } 
 
 .devicon-unity-original {
-    
-    height: 30px;   
+    position: static;
+    height: 60px;   
     width: 30px;
+    z-index: 15;
 } 
