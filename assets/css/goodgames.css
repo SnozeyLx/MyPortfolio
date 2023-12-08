@@ -4465,7 +4465,7 @@ img.rounded {
 .nk-social-links-2 > li > *,
 .nk-social-links-3 > li > * {
     display: block;
-    width: 60px;
+    width: 120px;
     height: 60px;
     margin: 3px;
     font-size: .9em;
@@ -4967,10 +4967,10 @@ img.rounded {
 }
 
 .nk-social-links-3 > li > * > svg {
-    width: 18px;
-    height: 18px;
-    margin-top: -9px;
-    margin-left: -9px;
+    width: 30px;
+    height: 30px;
+    margin-top: -16px;
+    margin-left: -16px;
 }
 
 .nk-social-links-3 > li > * > svg.svg-inline--fa {

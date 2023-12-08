@@ -10,3 +10,16 @@
     height: auto;  
     z-index: 15;
 } 
+.novaimgs {
+    width: 30%;
+    height: auto;  
+    z-index: 15;
+    left: 40;
+    padding-right: 15%;
+    top: 60px;
+} 
+.imgf {
+    position: absolute;
+    margin-top: 15px
+    
+} 
