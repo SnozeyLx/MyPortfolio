@@ -1799,7 +1799,7 @@ function initVideoBlocks() {
             // add play event
             $plainCont.on('click', function () {
                 if (_utility.isMobile) {
-                    window.open(api.url);
+                    //window.open(api.url);
                     return;
                 }
 
