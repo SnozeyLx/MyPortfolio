@@ -1786,7 +1786,7 @@ function initVideoBlocks() {
         var url = (0, _utility.$)(this).attr('data-video');
         var thumb = (0, _utility.$)(this).attr('data-video-thumb');
         var api = new VideoWorker(url, {
-            autoplay: 0,
+            autoplay: 1,
             loop: 0,
             mute: 0,
             controls: 1
@@ -1798,12 +1798,12 @@ function initVideoBlocks() {
 
             // add play event
             $plainCont.on('click', function () {
-                if (_utility.isMobile) {
-                    //window.open(api.url);
-                    api.play();
+             /*    if (_utility.isMobile) {
+                    window.open(api.url);
+                  
                     return;
                 }
-
+ */
                 if (clicked) {
                     return;
                 }
