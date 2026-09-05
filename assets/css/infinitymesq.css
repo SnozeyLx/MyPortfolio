@@ -13,10 +13,6 @@
     overflow: hidden;
 }
 
-body > .nk-header ~ .infinity-project {
-    padding-top: 0;
-}
-
 .infinity-hero {
     min-height: 470px;
     display: flex;

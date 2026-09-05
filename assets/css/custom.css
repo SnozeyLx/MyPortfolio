@@ -1,12 +1,4 @@
 /* PLACE YOU CUSTOM STYLES IN THIS FILE */
-body > .nk-header {
-    position: relative;
-}
-
-body > .nk-header ~ .nk-main {
-    padding-top: 90px;
-}
-
 .minhalogo {
     position: static;
     height: 100;   
