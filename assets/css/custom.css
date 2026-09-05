@@ -1,4 +1,8 @@
 /* PLACE YOU CUSTOM STYLES IN THIS FILE */
+.nk-main > .nk-gap-2:first-child {
+    display: none;
+}
+
 .minhalogo {
     position: static;
     height: 100;   
