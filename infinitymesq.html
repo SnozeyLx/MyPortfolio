@@ -21,6 +21,15 @@
     <link href="https://fonts.cdnfonts.com/css/cartoon-free" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/infinitymesq.css">
     <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script>
+        history.scrollRestoration = 'manual';
+        if (window.location.hash.indexOf('&gid=') !== -1) {
+            history.replaceState(null, document.title, window.location.pathname + window.location.search);
+        }
+        window.addEventListener('pageshow', function () {
+            window.scrollTo(0, 0);
+        });
+    </script>
 </head>
 <body class="infinity-project-page">
     <header class="nk-header nk-header-opaque"></header>
