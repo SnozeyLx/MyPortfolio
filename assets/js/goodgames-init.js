@@ -132,10 +132,40 @@ module.exports = __webpack_require__(3);
 
 var _options = __webpack_require__(1);
 
-if (typeof window.GoodGames !== 'undefined') {
-    window.GoodGames.setOptions(_options.options);
-    window.GoodGames.init();
+function loadSharedHeader() {
+    var currentHeader = document.querySelector('.nk-header');
+    var currentMobileNav = document.querySelector('#nk-nav-mobile');
+
+    return fetch('components/header.html')
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Unable to load shared header');
+            }
+            return response.text();
+        })
+        .then(function (headerHtml) {
+            if (currentMobileNav) {
+                currentMobileNav.remove();
+            }
+
+            if (currentHeader) {
+                currentHeader.outerHTML = headerHtml;
+            } else {
+                document.body.insertAdjacentHTML('afterbegin', headerHtml);
+            }
+        });
 }
+
+loadSharedHeader()
+    .catch(function (error) {
+        console.warn(error.message);
+    })
+    .then(function () {
+        if (typeof window.GoodGames !== 'undefined') {
+            window.GoodGames.setOptions(_options.options);
+            window.GoodGames.init();
+        }
+    });
 
 /***/ })
 /******/ ]);
