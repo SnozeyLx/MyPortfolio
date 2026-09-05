@@ -10,6 +10,21 @@
     height: auto;  
     z-index: 15;
 } 
+
+#unity-container {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#unity-canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
 .novaimgs {
     width: 30%;
     height: auto;  
