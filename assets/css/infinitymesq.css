@@ -1,0 +1,254 @@
+/* Infinity Run project page */
+.infinity-project-page {
+    background: #171e22;
+    color: #eef0f2;
+}
+
+.infinity-project-page .nk-header {
+    position: relative;
+    z-index: 10;
+}
+
+.infinity-project {
+    overflow: hidden;
+}
+
+.infinity-hero {
+    min-height: 470px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(115deg, rgba(23, 30, 34, 0.96), rgba(23, 30, 34, 0.78)), url('../images/bg-fixed-1.jpg') center / cover;
+}
+
+.infinity-hero::after {
+    content: "";
+    position: absolute;
+    width: 42vw;
+    height: 42vw;
+    max-width: 560px;
+    max-height: 560px;
+    right: -10vw;
+    bottom: -24vw;
+    border: 1px solid rgba(241, 151, 55, 0.35);
+    border-radius: 50%;
+    box-shadow: 0 0 0 42px rgba(241, 151, 55, 0.04), 0 0 0 84px rgba(241, 151, 55, 0.03);
+}
+
+.infinity-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+    padding: 90px 0 110px;
+}
+
+.infinity-hero-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 46%;
+    max-width: 600px;
+    padding: 0 15px 45px 40px;
+}
+
+.infinity-hero-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.infinity-kicker {
+    margin: 0 0 18px;
+    color: #dd163b;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.infinity-hero h1,
+.infinity-section h2 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.infinity-hero h1 {
+    margin: 0 0 22px;
+    font-size: clamp(42px, 7vw, 82px);
+    line-height: 1;
+}
+
+.infinity-lead {
+    max-width: 580px;
+    margin: 0 0 34px;
+    color: #c4cbd2;
+    font-size: 19px;
+    line-height: 1.7;
+}
+
+.infinity-section {
+    padding: 100px 0;
+}
+
+.infinity-section-dark {
+    background: #171b21;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.infinity-section-heading {
+    max-width: 680px;
+    margin: 0 auto 42px;
+    text-align: center;
+}
+
+.infinity-section-heading h2 {
+    margin: 0 0 18px;
+    font-size: 36px;
+}
+
+.infinity-section-heading > p:last-child,
+.infinity-section p {
+    color: #aeb6bf;
+    line-height: 1.8;
+}
+
+.infinity-feature-image {
+    overflow: hidden;
+    background: #090a0c;
+    border: 1px solid rgba(221, 22, 59, 0.45);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.infinity-feature-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+.infinity-facts {
+    margin-top: 26px;
+    border-top: 1px solid rgba(221, 22, 59, 0.45);
+}
+
+.infinity-facts div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.infinity-facts span {
+    color: #8e99a4;
+}
+
+.infinity-facts strong {
+    color: #fff;
+    text-align: right;
+}
+
+.infinity-card {
+    height: 100%;
+    padding: 28px;
+    background: #171b21;
+    border-top: 2px solid #dd163b;
+}
+
+.infinity-card-number {
+    display: block;
+    margin-bottom: 28px;
+    color: #dd163b;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.infinity-card h3 {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 22px;
+}
+
+.infinity-gallery-section {
+    background: rgba(15, 19, 22, 0.42);
+}
+
+.infinity-gallery .nk-gallery-item {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #090a0c;
+}
+
+.infinity-gallery .nk-gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+}
+
+.infinity-gallery .nk-gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+.infinity-footer {
+    padding: 28px 0;
+    background: #0b0c0f;
+}
+
+.infinity-footer .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.infinity-footer p {
+    margin: 0;
+    color: #8e99a4;
+}
+
+.infinity-footer a {
+    color: #f19a3e;
+}
+
+@media (max-width: 767px) {
+    .infinity-hero {
+        min-height: 480px;
+    }
+
+    .infinity-hero-content {
+        padding: 70px 0 80px;
+    }
+
+    .infinity-hero-image {
+        display: none;
+    }
+
+    .infinity-lead {
+        font-size: 16px;
+    }
+
+    .infinity-section {
+        padding: 70px 0;
+    }
+
+    .infinity-section-heading h2 {
+        font-size: 29px;
+    }
+
+    .infinity-footer .container {
+        display: block;
+    }
+
+    .infinity-footer a {
+        display: inline-block;
+        margin-top: 10px;
+    }
+}
