@@ -273,6 +273,13 @@
     object-fit: cover;
 }
 
+.infinity-sidebar-gallery .infinity-gallery-preview {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
 .infinity-hidden-gallery-items {
     display: none;
 }
