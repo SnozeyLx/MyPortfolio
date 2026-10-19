@@ -1,0 +1,101 @@
+.portfolio-home .home-intro {
+    padding: 76px 0 68px;
+}
+
+.portfolio-home .home-intro h1 {
+    max-width: 900px;
+    font-size: 48px;
+}
+
+.portfolio-home .home-intro p:not(.project-catalog-kicker) {
+    max-width: 760px;
+    margin-bottom: 28px;
+}
+
+.home-disciplines {
+    padding: 6px 0 72px;
+}
+
+.home-disciplines > .nk-decorated-h-2 {
+    margin-bottom: 24px;
+}
+
+.home-discipline {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    min-height: 112px;
+    gap: 18px;
+    padding: 22px;
+    color: #fff;
+    background: #202930;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.home-discipline:hover,
+.home-discipline:focus {
+    color: #fff;
+    background: #252f37;
+}
+
+.home-discipline > span:first-child {
+    flex: 0 0 36px;
+    color: #dd163b;
+    font-size: 32px;
+    text-align: center;
+}
+
+.home-discipline strong,
+.home-discipline small {
+    display: block;
+}
+
+.home-discipline strong {
+    margin-bottom: 5px;
+    font-family: Montserrat, sans-serif;
+    font-size: 17px;
+}
+
+.home-discipline small {
+    color: #aeb6bf;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.home-projects {
+    padding-bottom: 80px;
+}
+
+.home-section-heading {
+    margin-bottom: 28px;
+}
+
+.portfolio-home .project-catalog-card-content {
+    min-height: 245px;
+}
+
+.portfolio-home .project-catalog-card h3 {
+    margin: 0 0 16px;
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-size: 22px;
+    line-height: 1.25;
+}
+
+@media (max-width: 767px) {
+    .portfolio-home .home-intro {
+        padding: 46px 0 42px;
+    }
+
+    .portfolio-home .home-intro h1 {
+        font-size: 34px;
+    }
+
+    .home-disciplines {
+        padding-bottom: 48px;
+    }
+
+    .portfolio-home .project-catalog-card-content {
+        min-height: 0;
+    }
+}

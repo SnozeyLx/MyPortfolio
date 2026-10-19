@@ -98,6 +98,35 @@
         canvas.style.height = "600px";
       }
 
+      if (new URLSearchParams(window.location.search).has("embed")) {
+        var designWidth = canvas.width;
+        var designHeight = canvas.height;
+        var resizeEmbeddedPlayer = function() {
+          var availableHeight = Math.max(100, window.innerHeight - 38);
+          var scale = Math.min(window.innerWidth / designWidth, availableHeight / designHeight);
+          container.className = "unity-desktop unity-embedded";
+          container.style.position = "relative";
+          container.style.left = "auto";
+          container.style.top = "auto";
+          container.style.transform = "none";
+          container.style.display = "flex";
+          container.style.flexDirection = "column";
+          container.style.alignItems = "center";
+          container.style.justifyContent = "center";
+          container.style.width = "100vw";
+          container.style.height = "100vh";
+          container.style.overflow = "hidden";
+          document.body.style.overflow = "hidden";
+          canvas.style.width = Math.floor(designWidth * scale) + "px";
+          canvas.style.height = Math.floor(designHeight * scale) + "px";
+          canvas.style.flex = "0 0 auto";
+          document.querySelector("#unity-footer").style.width = "min(100%, 1000px)";
+          document.querySelector("#unity-footer").style.flex = "0 0 38px";
+        };
+        resizeEmbeddedPlayer();
+        window.addEventListener("resize", resizeEmbeddedPlayer);
+      }
+
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");

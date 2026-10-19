@@ -57,3 +57,34 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
+.language-switcher {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    min-height: 28px;
+    padding: 4px 0;
+    color: #8f9ba5;
+    font-size: 11px;
+    line-height: 1;
+}
+
+.language-switcher a,
+.language-switcher > span:not(.language-switcher-separator) {
+    color: #b7c0c8;
+}
+
+.language-switcher a:hover,
+.language-switcher a:focus,
+.language-switcher > span[aria-current="page"] {
+    color: #fff;
+}
+
+.language-switcher > span[aria-current="page"] {
+    font-weight: 700;
+}
+
+.language-switcher-separator {
+    color: #65717b;
+}
