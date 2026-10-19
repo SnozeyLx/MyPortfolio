@@ -55,81 +55,6 @@
     font-size: 26px;
 }
 
-.gamedesign-project {
-    overflow: hidden;
-    height: 100%;
-    background: #202930;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.gamedesign-project-image {
-    overflow: hidden;
-    background: #0c1013;
-}
-
-.gamedesign-project-image img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    height: 225px;
-    object-fit: cover;
-}
-
-.gamedesign-project-content {
-    padding: 30px;
-}
-
-.gamedesign-project-content h2 {
-    margin: 0 0 16px;
-    color: #fff;
-    font-family: Montserrat, sans-serif;
-    font-size: 25px;
-    line-height: 1.2;
-}
-
-.gamedesign-project-content p:not(.gamedesign-kicker) {
-    color: #aeb6bf;
-    line-height: 1.7;
-}
-
-.gamedesign-project-content {
-    min-height: 255px;
-}
-
-.gamedesign-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin-bottom: 18px;
-}
-
-.gamedesign-tags span {
-    padding: 5px 10px;
-    color: #fff;
-    background: #dd163b;
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.gamedesign-tags span:nth-child(2) {
-    background: #259eb0;
-}
-
-.gamedesign-tags span:nth-child(3) {
-    background: #236ac1;
-}
-
-.gamedesign-link {
-    display: inline-block;
-    margin-top: 8px;
-    color: #fff;
-    font-weight: 700;
-}
-
-.gamedesign-link:hover {
-    color: #dd163b;
-}
-
 .gamedesign-sidebar {
     padding-top: 10px;
 }
@@ -210,14 +135,6 @@
 
     .gamedesign-intro h1 {
         font-size: 32px;
-    }
-
-    .gamedesign-project-image img {
-        height: 210px;
-    }
-
-    .gamedesign-project-content {
-        padding: 24px;
     }
 
     .gamedesign-sidebar {
