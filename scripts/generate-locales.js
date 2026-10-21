@@ -843,11 +843,41 @@ function addAlternates(html, route, outputPath) {
     return html.replace('</head>', `${links}\n</head>`);
 }
 
+function addHomeSocialMetadata(html, locale, outputPath) {
+    const baseUrl = 'https://snozeylx.github.io/MyPortfolio/';
+    const localePrefix = locale === 'pt' ? '' : `${locale}/`;
+    const pageUrl = new URL(localePrefix, baseUrl).href;
+    const imageUrl = `${baseUrl}assets/images/infinitymesquita/Captura%20de%20tela%202026-09-03%20003027.png`;
+    const title = (html.match(/<title>([^<]*)<\/title>/) || [])[1];
+    const description = (html.match(/<meta name="description" content="([^"]*)"/) || [])[1];
+    const imageAlt = {
+        pt: 'Missão Mesquita, jogo desenvolvido por Richard Mendonça',
+        en: 'Missão Mesquita, a game by Richard Mendonça',
+        es: 'Missão Mesquita, un videojuego de Richard Mendonça'
+    }[locale];
+    if (!title || !description) throw new Error(`Home page title or description not found in ${outputPath}`);
+
+    const metadata = [
+        `<meta property="og:type" content="website">`,
+        `<meta property="og:site_name" content="Richard Mendonça">`,
+        `<meta property="og:title" content="${title}">`,
+        `<meta property="og:description" content="${description}">`,
+        `<meta property="og:url" content="${pageUrl}">`,
+        `<meta property="og:image" content="${imageUrl}">`,
+        '<meta property="og:image:width" content="998">',
+        '<meta property="og:image:height" content="633">',
+        `<meta property="og:image:alt" content="${imageAlt}">`,
+        '<meta name="twitter:card" content="summary_large_image">'
+    ].join('\n    ');
+    html = html.replace(/\s*<meta (?:property="og:[^"]+"|name="twitter:card")[^>]*>/g, '');
+    return html.replace('</head>', `    ${metadata}\n</head>`);
+}
+
 function wirePortuguesePage(route) {
     let html = fs.readFileSync(route, 'utf8');
     html = html.replace(/\.\.\/https:\/\//g, 'https://');
     html = restoreLegacyMenuItems(html);
-    html = wireStaticNavigation(html, route, 'pt');
+    html = wirePortfolioNavigation(wireStaticNavigation(html, route, 'pt'), route, 'pt');
     html = wireSectionPageLinks(html, route, 'pt');
     if (route === 'gamedesign/missaomesquita.html') {
         html = html.replace(/\s*<a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" href="\.\.\/webgl\/GameMesquita\/index\.html"[^>]*>[\s\S]*?<\/a>/, '');
@@ -981,7 +1011,8 @@ function wirePortugueseHome() {
     html = html.replace(/(<h2 class="nk-post-title h4">Meta in Rio<\/h2>)[ \t]+/g, '$1')
         .replace(/(<h2 class="nk-post-title h4">Annie’s Sweet Nightmares<\/h2>)[ \t]+/g, '$1');
 
-    html = wireStaticNavigation(html, 'index.html', 'pt');
+    html = wirePortfolioNavigation(wireStaticNavigation(html, 'index.html', 'pt'), 'index.html', 'pt');
+    html = addHomeSocialMetadata(html, 'pt', 'index.html');
     html = addSwitcher(html, 'pt', 'index.html', 'index.html');
     html = addAlternates(html, 'index.html', 'index.html');
     fs.writeFileSync('index.html', html, 'utf8');
@@ -1003,6 +1034,110 @@ function wireStaticNavigation(html, outputPath, locale) {
         html = html.replace(pattern, `<li><a href="${href}">${page.localized[locale]}</a></li>`);
     }
     return html;
+}
+
+function wirePortfolioNavigation(html, outputPath, locale) {
+    const labels = {
+        pt: { projects: 'Projetos', developer: 'Desenvolvedor', gameDesign: 'Game Design', management: 'Gerenciamento', biography: 'Biografia', playable: 'Jogáveis', gallery: 'Galeria', extra: 'Extra' },
+        en: { projects: 'Projects', developer: 'Development', gameDesign: 'Game Design', management: 'Project management', biography: 'About', playable: 'Playable games', gallery: 'Gallery', extra: 'Extra' },
+        es: { projects: 'Proyectos', developer: 'Desarrollo', gameDesign: 'Diseño de videojuegos', management: 'Gestión de proyectos', biography: 'Biografía', playable: 'Juegos jugables', gallery: 'Galería', extra: 'Más' }
+    }[locale];
+    const projectLabels = {
+        pt: {
+            whiteroom: 'WhiteRoom Market',
+            annie: "Annie's Sweet Nightmares",
+            missaomesquita: 'Missão Mesquita',
+            metainrio: 'Meta in Rio',
+            rainbowrevenge: 'Rainbow Revenge: Recruit',
+            greencoding: 'GreenCoding Experience'
+        },
+        en: {
+            whiteroom: 'WhiteRoom Market',
+            annie: "Annie's Sweet Nightmares",
+            missaomesquita: 'Missão Mesquita',
+            metainrio: 'Meta in Rio',
+            rainbowrevenge: 'Rainbow Revenge: Recruit',
+            greencoding: 'GreenCoding Experience'
+        },
+        es: {
+            whiteroom: 'WhiteRoom Market',
+            annie: "Annie's Sweet Nightmares",
+            missaomesquita: 'Missão Mesquita',
+            metainrio: 'Meta in Rio',
+            rainbowrevenge: 'Rainbow Revenge: Recruit',
+            greencoding: 'GreenCoding Experience'
+        }
+    }[locale];
+    const hrefFor = route => {
+        const target = locale === 'pt' ? route : path.posix.join(locale, route);
+        return path.posix.relative(path.posix.dirname(outputPath), target).replace(/\\/g, '/');
+    };
+    const staticLinks = [
+        ['biografia.html', labels.biography],
+        ['jogaveis.html', labels.playable],
+        ['galeria.html', labels.gallery],
+        ['extra.html', labels.extra]
+    ];
+    const categories = [
+        {
+            route: 'desenvolvedor/index.html',
+            label: labels.developer,
+            projects: [
+                ['desenvolvedor/whiteroom.html', projectLabels.whiteroom],
+                ['desenvolvedor/annie.html', projectLabels.annie]
+            ]
+        },
+        {
+            route: 'gamedesign/index.html',
+            label: labels.gameDesign,
+            projects: [
+                ['gamedesign/missaomesquita.html', projectLabels.missaomesquita],
+                ['gamedesign/metainrio.html', projectLabels.metainrio],
+                ['gamedesign/rainbowrevenge.html', projectLabels.rainbowrevenge]
+            ]
+        },
+        {
+            route: 'gestao/index.html',
+            label: labels.management,
+            projects: [['gestao/greencoding.html', projectLabels.greencoding]]
+        }
+    ];
+    const menu = `<li class="nk-drop-item"><a href="#">${labels.projects}</a><ul class="dropdown">` +
+        categories.map(category =>
+            `<li class="nk-drop-item"><a href="${hrefFor(category.route)}">${category.label}</a><ul class="dropdown">` +
+            category.projects.map(([route, label]) => `<li><a href="${hrefFor(route)}">${label}</a></li>`).join('') +
+            '</ul></li>').join('') +
+        '</ul></li>' +
+        staticLinks.map(([route, label]) => `<li><a href="${hrefFor(route)}">${label}</a></li>`).join('');
+    const openingPattern = /<ul\b[^>]*class="[^"]*\bnk-nav-right\b[^"]*\bd-none\b[^"]*\bd-lg-table-cell[^"]*"[^>]*>/;
+    const openingMatch = html.match(openingPattern);
+    if (!openingMatch) throw new Error(`Desktop navigation not found in ${outputPath}`);
+
+    const openingStart = openingMatch.index;
+    let openingTag = openingMatch[0];
+    if (!/\bdata-nav-mobile=/.test(openingTag)) {
+        openingTag = openingTag.replace(/>$/, ' data-nav-mobile="#nk-nav-mobile">');
+    }
+    const tags = /<\/?ul\b[^>]*>/g;
+    tags.lastIndex = openingStart;
+    let depth = 0;
+    let closingStart = -1;
+    let tag;
+    while ((tag = tags.exec(html))) {
+        depth += tag[0].startsWith('</') ? -1 : 1;
+        if (depth === 0) {
+            closingStart = tag.index;
+            break;
+        }
+    }
+    if (closingStart === -1) throw new Error(`Desktop navigation list is not closed in ${outputPath}`);
+    html = html.slice(0, openingStart) + openingTag + menu + html.slice(closingStart, html.length);
+
+    const homeHref = hrefFor('index.html');
+    return html.replace(/<a\b[^>]*class="[^"]*\bnk-nav-logo\b[^"]*"[^>]*>/g, opening =>
+        /\bhref="[^"]*"/.test(opening)
+            ? opening.replace(/\bhref="[^"]*"/, `href="${homeHref}"`)
+            : opening.replace(/>$/, ` href="${homeHref}">`));
 }
 
 function wireSectionPageLinks(html, outputPath, locale) {
@@ -1084,9 +1219,10 @@ function buildHome(locale) {
         .replace(/<title>[^<]*<\/title>/, locale === 'en'
             ? '<title>Richard Mendonça | Game Development and Game Design</title>'
             : '<title>Richard Mendonça | Desarrollo de videojuegos y diseño de juegos</title>');
-    html = wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale);
+    html = wirePortfolioNavigation(wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale), outputPath, locale);
     html = addSwitcher(html, locale, route, outputPath);
     html = addAlternates(html, route, outputPath);
+    html = addHomeSocialMetadata(html, locale, outputPath);
     fs.mkdirSync(path.dirname(outputPath), { recursive: true });
     fs.writeFileSync(outputPath, html, 'utf8');
 }
@@ -1122,7 +1258,7 @@ function buildPage(route, locale) {
         'galeria.html': locale === 'en' ? 'Gallery | Richard Mendonça' : 'Galería | Richard Mendonça',
         'extra.html': locale === 'en' ? 'More | Richard Mendonça' : 'Más | Richard Mendonça'
     };
-    html = wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale);
+    html = wirePortfolioNavigation(wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale), outputPath, locale);
     html = html.replace(/<title>[^<]*<\/title>/, `<title>${titleMap[route]}</title>`);
     html = addSwitcher(html, locale, route, outputPath);
     html = addAlternates(html, route, outputPath);
