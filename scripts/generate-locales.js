@@ -877,7 +877,7 @@ function wirePortuguesePage(route) {
     let html = fs.readFileSync(route, 'utf8');
     html = html.replace(/\.\.\/https:\/\//g, 'https://');
     html = restoreLegacyMenuItems(html);
-    html = wirePortfolioNavigation(wireStaticNavigation(html, route, 'pt'), route, 'pt');
+    html = disableUnavailableProjectLinks(wirePortfolioNavigation(wireStaticNavigation(html, route, 'pt'), route, 'pt'));
     html = wireSectionPageLinks(html, route, 'pt');
     if (route === 'gamedesign/missaomesquita.html') {
         html = html.replace(/\s*<a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" href="\.\.\/webgl\/GameMesquita\/index\.html"[^>]*>[\s\S]*?<\/a>/, '');
@@ -1042,34 +1042,11 @@ function wirePortfolioNavigation(html, outputPath, locale) {
         en: { projects: 'Projects', developer: 'Development', gameDesign: 'Game Design', management: 'Project management', biography: 'About', playable: 'Playable games', gallery: 'Gallery', extra: 'Extra' },
         es: { projects: 'Proyectos', developer: 'Desarrollo', gameDesign: 'Diseño de videojuegos', management: 'Gestión de proyectos', biography: 'Biografía', playable: 'Juegos jugables', gallery: 'Galería', extra: 'Más' }
     }[locale];
-    const projectLabels = {
-        pt: {
-            whiteroom: 'WhiteRoom Market',
-            annie: "Annie's Sweet Nightmares",
-            missaomesquita: 'Missão Mesquita',
-            metainrio: 'Meta in Rio',
-            rainbowrevenge: 'Rainbow Revenge: Recruit',
-            greencoding: 'GreenCoding Experience'
-        },
-        en: {
-            whiteroom: 'WhiteRoom Market',
-            annie: "Annie's Sweet Nightmares",
-            missaomesquita: 'Missão Mesquita',
-            metainrio: 'Meta in Rio',
-            rainbowrevenge: 'Rainbow Revenge: Recruit',
-            greencoding: 'GreenCoding Experience'
-        },
-        es: {
-            whiteroom: 'WhiteRoom Market',
-            annie: "Annie's Sweet Nightmares",
-            missaomesquita: 'Missão Mesquita',
-            metainrio: 'Meta in Rio',
-            rainbowrevenge: 'Rainbow Revenge: Recruit',
-            greencoding: 'GreenCoding Experience'
-        }
-    }[locale];
     const hrefFor = route => {
+        if (['desenvolvedor/rio2030.html', 'gestao/woodyschool.html', 'gestao/woodystreet.html'].includes(route)) return '#';
         const target = locale === 'pt' ? route : path.posix.join(locale, route);
+        const targetFile = path.join(process.cwd(), ...target.split('/'));
+        if (!fs.existsSync(targetFile)) return '#';
         return path.posix.relative(path.posix.dirname(outputPath), target).replace(/\\/g, '/');
     };
     const staticLinks = [
@@ -1083,23 +1060,31 @@ function wirePortfolioNavigation(html, outputPath, locale) {
             route: 'desenvolvedor/index.html',
             label: labels.developer,
             projects: [
-                ['desenvolvedor/whiteroom.html', projectLabels.whiteroom],
-                ['desenvolvedor/annie.html', projectLabels.annie]
+                ['desenvolvedor/rio2030.html', 'Rio 2030'],
+                ['desenvolvedor/vacinerace.html', 'Vaccine Race'],
+                ['desenvolvedor/whiteroom.html', 'WhiteRoom Market'],
+                ['desenvolvedor/annie.html', "Annie's Sweet Nightmares"],
+                ['desenvolvedor/woodyverso.html', 'Woodyverso Site']
             ]
         },
         {
             route: 'gamedesign/index.html',
             label: labels.gameDesign,
             projects: [
-                ['gamedesign/missaomesquita.html', projectLabels.missaomesquita],
-                ['gamedesign/metainrio.html', projectLabels.metainrio],
-                ['gamedesign/rainbowrevenge.html', projectLabels.rainbowrevenge]
+                ['gamedesign/missaomesquita.html', 'Missão Mesquita'],
+                ['gamedesign/metainrio.html', 'Meta in Rio'],
+                ['gamedesign/rainbowrevenge.html', 'Rainbow Revenge: Recruit'],
+                ['gamedesign/aej.html', 'AEJ']
             ]
         },
         {
             route: 'gestao/index.html',
             label: labels.management,
-            projects: [['gestao/greencoding.html', projectLabels.greencoding]]
+            projects: [
+                ['gestao/greencoding.html', 'GreenCoding Experience'],
+                ['gestao/woodyschool.html', 'WoodySchool'],
+                ['gestao/woodystreet.html', 'WoodyStreet']
+            ]
         }
     ];
     const menu = `<li class="nk-drop-item"><a href="#">${labels.projects}</a><ul class="dropdown">` +
@@ -1138,6 +1123,14 @@ function wirePortfolioNavigation(html, outputPath, locale) {
         /\bhref="[^"]*"/.test(opening)
             ? opening.replace(/\bhref="[^"]*"/, `href="${homeHref}"`)
             : opening.replace(/>$/, ` href="${homeHref}">`));
+}
+
+function disableUnavailableProjectLinks(html) {
+    return html.replace(/\bhref="(?:[^"]*\/)?(?:rio2030|woodyschool|woodystreet)\.html"/g, 'href="#"');
+}
+
+function removeWrongMesquitaLaunchLinks(html) {
+    return html.replace(/\s*<a class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-white" href="\.\.\/webgl\/GameMesquita\/index\.html"[^>]*>[\s\S]*?<\/a>/g, '');
 }
 
 function wireSectionPageLinks(html, outputPath, locale) {
@@ -1219,7 +1212,7 @@ function buildHome(locale) {
         .replace(/<title>[^<]*<\/title>/, locale === 'en'
             ? '<title>Richard Mendonça | Game Development and Game Design</title>'
             : '<title>Richard Mendonça | Desarrollo de videojuegos y diseño de juegos</title>');
-    html = wirePortfolioNavigation(wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale), outputPath, locale);
+    html = disableUnavailableProjectLinks(wirePortfolioNavigation(wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale), outputPath, locale));
     html = addSwitcher(html, locale, route, outputPath);
     html = addAlternates(html, route, outputPath);
     html = addHomeSocialMetadata(html, locale, outputPath);
@@ -1258,7 +1251,7 @@ function buildPage(route, locale) {
         'galeria.html': locale === 'en' ? 'Gallery | Richard Mendonça' : 'Galería | Richard Mendonça',
         'extra.html': locale === 'en' ? 'More | Richard Mendonça' : 'Más | Richard Mendonça'
     };
-    html = wirePortfolioNavigation(wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale), outputPath, locale);
+    html = disableUnavailableProjectLinks(wirePortfolioNavigation(wireSectionPageLinks(wireStaticNavigation(html, outputPath, locale), outputPath, locale), outputPath, locale));
     html = html.replace(/<title>[^<]*<\/title>/, `<title>${titleMap[route]}</title>`);
     html = addSwitcher(html, locale, route, outputPath);
     html = addAlternates(html, route, outputPath);
@@ -1273,6 +1266,11 @@ for (const route of pages) {
 }
 
 wirePortugueseHome();
+
+for (const route of ['desenvolvedor/rio2030.html', 'gestao/woodyschool.html', 'gestao/woodystreet.html']) {
+    const html = fs.readFileSync(route, 'utf8');
+    fs.writeFileSync(route, removeWrongMesquitaLaunchLinks(disableUnavailableProjectLinks(wirePortfolioNavigation(html, route, 'pt'))), 'utf8');
+}
 
 for (const locale of ['en', 'es']) {
     buildHome(locale);

@@ -619,11 +619,11 @@ h6,
 
 .nk-decorated-h::before,
 .nk-decorated-h-2::before {
-    -webkit-box-flex: 20px;
-        -ms-flex: 20px;
-            flex: 20px;
-    width: 20px;
-    min-width: 20px;
+    -webkit-box-flex: 80px;
+        -ms-flex: 80px;
+            flex: 80px;
+    width: 80px;
+    min-width: 80px;
 }
 
 .nk-decorated-h-2::after, .nk-decorated-h-2::before {
@@ -6216,7 +6216,7 @@ img.rounded {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    width: 116px;
+    width: 80px;
     height: 50px;
     padding-right: 10px;
     font-size: 3rem;
@@ -6236,7 +6236,7 @@ img.rounded {
 .nk-feature-1 .nk-feature-cont,
 .nk-feature-2 .nk-feature-cont {
     padding-top: 8px;
-    padding-left: 38px;
+    padding-left: 10px;
 }
 
 .nk-feature-2 {
