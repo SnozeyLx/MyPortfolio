@@ -382,7 +382,9 @@ const locales = {
         'Preparação da versão jogável para navegador e integração ao portfólio.': 'Preparing the browser version and integrating it into the portfolio.',
         'Missão Mesquita foi uma oportunidade de experimentar como um sistema simples de movimento pode sustentar uma experiência completa. A cidade, os obstáculos e as cartas foram pensados para dar ao jogador motivos diferentes para continuar explorando.': 'Missão Mesquita was an opportunity to explore how a simple movement system can support a complete experience. The city, obstacles, and cards give players different reasons to keep exploring.',
         'O projeto também serviu como espaço para testar ritmo, leitura visual e progressão em uma experiência jogável para navegador.': 'The project also provided a way to test pacing, visual readability, and progression in a browser-playable experience.',
-        'Equipe do projeto': 'Project team', 'Elementos da experiência': 'Project elements'
+        'Equipe do projeto': 'Project team', 'Elementos da experiência': 'Experience elements',
+        'Leituras do projeto': 'Project insights', 'Visão do projeto': 'Project overview',
+        'Direção de gameplay': 'Gameplay direction'
     },
     es: {
         'Projetos': 'Proyectos', 'Desenvolvedor': 'Desarrollo', 'Desenvolvimento': 'Desarrollo',
@@ -748,7 +750,9 @@ const locales = {
         'Ferramentas são parte da jornada — os projetos mostram o resultado.': 'Las herramientas son parte del camino; los proyectos muestran el resultado.',
         'Veja os projetos de desenvolvimento': 'Descubre los proyectos de desarrollo',
         'ou': 'o', 'Player de jogos WebGL': 'Reproductor de juegos WebGL',
-        'Equipe do projeto': 'Equipo del proyecto', 'Elementos da experiência': 'Elementos de la experiencia'
+        'Equipe do projeto': 'Equipo del proyecto', 'Elementos da experiência': 'Elementos de la experiencia',
+        'Leituras do projeto': 'Perspectivas del proyecto', 'Visão do projeto': 'Resumen del proyecto',
+        'Direção de gameplay': 'Dirección de gameplay'
     }
 };
 
