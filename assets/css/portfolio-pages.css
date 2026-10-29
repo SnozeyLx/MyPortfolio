@@ -179,7 +179,7 @@
 
 .portfolio-game-layout {
     display: grid;
-    grid-template-columns: minmax(230px, .72fr) minmax(0, 1.55fr);
+    grid-template-columns: minmax(230px, .72fr) minmax(0, 1.62fr);
     align-items: start;
     gap: 24px;
     margin-top: 38px;
