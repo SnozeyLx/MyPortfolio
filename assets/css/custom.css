@@ -43,10 +43,29 @@
     
 } 
 .rainbowvid {
-    
-    margin-right: 15px;
-    
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin: 0;
 } 
+
+body[data-site-route="index.html"] .home-layout-heading::before {
+    display: none;
+}
+
+body[data-site-route="index.html"] .home-layout-heading > span {
+    flex: 0 0 auto;
+    padding-right: 10px;
+    padding-left: 0;
+}
+
+body[data-site-route="index.html"] .home-layout-heading::after {
+    flex: 0 0 110px;
+    max-width: 110px;
+    border-bottom: 3px solid #fff;
+}
 
 .rainbowfont {
     margin-top: 0px;
