@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Annie's Sweet Nightmares</title>
+  </head>
+  <body style="padding: 0; margin: 0; text-align: center; background: #231F20">
+    <canvas id="unity-canvas" width="960" height="600" tabindex="-1" style="display: block; width: 960px; height: 600px; max-width: 100%; margin: 0 auto; background: #231F20"></canvas>
+    <script src="Build/webgl.loader.js"></script>
+    <script>
+      var canvas = document.querySelector("#unity-canvas");
+      if (new URLSearchParams(window.location.search).has("embed")) {
+        document.body.style.display = "grid";
+        document.body.style.placeItems = "center";
+        document.body.style.height = "100vh";
+        document.body.style.overflow = "hidden";
+        var resizeEmbeddedCanvas = function() {
+          var scale = Math.min(window.innerWidth / canvas.width, window.innerHeight / canvas.height);
+          canvas.style.width = Math.floor(canvas.width * scale) + "px";
+          canvas.style.height = Math.floor(canvas.height * scale) + "px";
+        };
+        resizeEmbeddedCanvas();
+        window.addEventListener("resize", resizeEmbeddedCanvas);
+      }
+
+      createUnityInstance(canvas, {
+        dataUrl: "Build/webgl.data.unityweb",
+        frameworkUrl: "Build/webgl.framework.js.unityweb",
+        codeUrl: "Build/webgl.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Annie's Sweet Nightmares",
+        productName: "Annie's Sweet Nightmares",
+        productVersion: "0.1",
+      });
+    </script>
+  </body>
+</html>
