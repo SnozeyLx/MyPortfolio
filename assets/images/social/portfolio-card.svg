@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="overlay" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0b1020" stop-opacity="1"/>
+      <stop offset=".46" stop-color="#0b1020" stop-opacity=".98"/>
+      <stop offset=".72" stop-color="#0b1020" stop-opacity=".68"/>
+      <stop offset="1" stop-color="#0b1020" stop-opacity=".25"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#b32ce8"/>
+      <stop offset="1" stop-color="#ff4f79"/>
+    </linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#0b1020" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#0b1020" stop-opacity=".55"/>
+    </linearGradient>
+    <clipPath id="card">
+      <rect width="1200" height="630" rx="0"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#card)">
+    <rect width="1200" height="630" fill="#0b1020"/>
+    <image href="../infinitymesquita/Captura%20de%20tela%202026-09-03%20003027.png" x="400" y="0" width="800" height="630" preserveAspectRatio="xMidYMid slice"/>
+    <rect width="1200" height="630" fill="url(#overlay)"/>
+    <rect width="1200" height="630" fill="url(#shade)"/>
+    <path d="M0 0h14v630H0z" fill="url(#accent)"/>
+    <image href="../logonome/logoMag1.1.png" x="44" y="18" width="410" height="279" preserveAspectRatio="xMidYMid meet"/>
+    <rect x="58" y="327" width="72" height="5" rx="2.5" fill="url(#accent)"/>
+    <text x="58" y="389" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.2">Ideias que viram</text>
+    <text x="58" y="445" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.2">jogos e experiências.</text>
+    <text x="60" y="493" fill="#c6ccda" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400">Game design · desenvolvimento · produção</text>
+    <text x="60" y="582" fill="#f3f5fa" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="1.5">SNOZEYLX.GITHUB.IO/MYPORTFOLIO</text>
+    <circle cx="1132" cy="556" r="5" fill="#ff4f79"/>
+    <circle cx="1152" cy="556" r="5" fill="#b32ce8"/>
+    <circle cx="1172" cy="556" r="5" fill="#7dd3fc"/>
+  </g>
+</svg>
